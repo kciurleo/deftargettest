@@ -27,12 +27,13 @@ export default {
 <style lang="css">
   .card {
     position: relative;
-    height: 400px;
-    width: 400px;
+    height: 300px;
+    width: 300px;
   }
   img {
     position: relative;
-    width:400px;
+    width:300px;
+    height:300px;
   }
   .card-content {
     color: white;

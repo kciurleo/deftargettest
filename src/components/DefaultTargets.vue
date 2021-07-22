@@ -1,11 +1,11 @@
 <template>
   <div class="targets container">
     <h2 class="subtitle is-3">
-    Check out these targets
+    Photon Ranch Easy Target Search
     </h2>
     <b-form id="targform" @submit.prevent>
       <p>
-        <label for="location1">PTR Location: </label>
+        <label for="location1">Photon Ranch Location: </label>
         <select id="location1" v-model="dataentry.location1" required>
             <option lat="34" long="-120" value="mrc">Santa Barbara (MRC)</option>
             <option lat="36" long="-106" value="saf">Santa Fe (SAF)</option>
@@ -20,11 +20,11 @@
         </select>
       </p>
       <p>
-        <label for="lat1">Latitude:</label>
+        <label for="lat1">Latitude (optional):</label>
           <input type="text" id="lat1" v-model="dataentry.lat1">
       </p>
       <p>
-        <label for="lon1">Longitude:</label>
+        <label for="lon1">Longitude (optional):</label>
           <input type="text" id="lon1" v-model="dataentry.lon1">
       </p>
       <p>
@@ -39,11 +39,9 @@
         <b-button @click="submitForm">Find Targets</b-button>
       </p>
     </b-form>
-    <div class="columns is-multiline">
+    <div class="columns">
       <div v-for="target in targlist" :target="target" :key="target.name">
-      <div class="column is-one-quarter">
         <TargetCard :target="target" />
-      </div>
       </div>
     </div>
   </div>
@@ -90,5 +88,13 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="css" scoped>
+  .{targlist {
+    margin-top: 100px;
+  }}
+  .columns {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
 </style>
