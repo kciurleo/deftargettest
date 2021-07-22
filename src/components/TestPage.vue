@@ -4,7 +4,7 @@
     Check out these targets
     </h2>
     <TargetForm />
-    <p>{{ targlist }}</p>
+    <button @click="showTargs">click me2</button>
   </div>
 </template>
 
@@ -34,6 +34,9 @@ export default {
           // eslint-disable-next-line
           console.error(error);
         });
+    },
+    showTargs() {
+      console.log(this.targlist);
     },
   },
   updated() {

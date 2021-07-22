@@ -42,6 +42,8 @@ export default {
   data() {
     return {
       dataentry: {
+        target: {},
+        targlist: '',
         location1: '',
         lat1: '',
         lon1: '',
