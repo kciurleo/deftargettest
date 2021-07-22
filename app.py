@@ -39,7 +39,7 @@ locations={
 # form entry and response
 @app.route('/ping', methods=['POST','GET'])
 def defsearch():
-    #'''
+    '''
     location1='mrc'
     lat1='0'
     lon1='0'

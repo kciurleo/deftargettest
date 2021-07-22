@@ -1,5 +1,5 @@
 <template>
-<form id="targform" @submit="submitForm">
+<form id="targform" @submit.prevent>
   <p>
     <label for="location1">PTR Location (optional): </label>
     <select id="location1" v-model="dataentry.location1">

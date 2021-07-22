@@ -3,23 +3,19 @@
     <h2 class="subtitle is-3">
     Check out these targets
     </h2>
-    <div class="columns is-multiline">
-      <div v-for="target in targlist" :target="target" :key="target.name"
-      class="column is-one-quarter">
-        <TargetCard :target="target" />
-      </div>
-    </div>
+    <TargetForm />
+    <p>{{ targlist }}</p>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import TargetCard from '@/components/TargetCard.vue';
+import TargetForm from '@/components/TargetForm.vue';
 
 export default {
   name: 'DefaultTargets',
   components: {
-    TargetCard,
+    TargetForm,
   },
   data() {
     return {
@@ -40,7 +36,7 @@ export default {
         });
     },
   },
-  created() {
+  updated() {
     this.getMessage();
   },
 };
