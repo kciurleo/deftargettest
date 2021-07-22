@@ -36,11 +36,11 @@
             <input type="time" id="timeobs" v-model="dataentry.timeobs" required>
       </p>
       <p>
-      <input type="radio" id="tzinfo" value="my" v-model="dataentry.tzinfo">
+      <input name="tzinfo" type="radio" id="tzinfo" value="my" v-model="dataentry.tzinfo" required>
       <label for="my">My timezone</label>
-      <!-- <input type="radio" id="tzinfo" value="local" v-model="dataentry.tzinfo"> -->
+      <!-- <input type="radio" id="tzinfo" value="local" v-model="dataentry.tzinfo" required> -->
       <!-- <label for="local">Local timezone (observatory)</label> -->
-      <input type="radio" id="tzinfo" value="utc" v-model="dataentry.tzinfo">
+      <input name="tzinfo" type="radio" id="tzinfo" value="utc" v-model="dataentry.tzinfo" required>
       <label for="utc">UTC</label>
       </p>
       <p>
@@ -74,7 +74,7 @@ export default {
         lon1: '',
         dateobs: '',
         timeobs: '',
-        tzinfo: '',
+        tzinfo: 'my',
         offset: '',
       },
     };

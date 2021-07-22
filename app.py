@@ -65,14 +65,14 @@ def defsearch():
     else:
        locn=locations[location1]
 
-    start=Time(dateobs+'T'+timeobs)
-
     if tzinfo == "my":                                          #option for student's time or UTC
         utcoffset=offset
-    #else if tzinfo = "local":
+    #elif tzinfo = "local":
         #utcoffset=?
-    else if tzinfo == "utc":
+    elif tzinfo == "utc":
         utcoffset=0
+
+    start=Time(dateobs+'T'+timeobs)                             #in student's local time 
 
     starttime=Time(start)-utcoffset*u.min                          #start time in UTC
     endtime=starttime+TimeDelta(1800.0, format='sec')           #end time if block is 30min
