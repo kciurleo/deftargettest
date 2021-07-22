@@ -3,7 +3,6 @@ import Router from 'vue-router';
 import TestPage from '../components/TestPage.vue';
 import DefaultTargets from '../components/DefaultTargets.vue';
 import TargetCard from '../components/TargetCard.vue';
-import FormTest from '../components/TargetForm.vue';
 
 Vue.use(Router);
 
@@ -20,11 +19,6 @@ export default new Router({
       path: '/ping',
       name: 'DefaultTargets',
       component: DefaultTargets,
-    },
-    {
-      path: '/formtest',
-      name: 'FormTest',
-      component: FormTest,
     },
     {
       path: '/target/:id',
