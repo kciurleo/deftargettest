@@ -36,6 +36,14 @@
             <input type="time" id="timeobs" v-model="dataentry.timeobs" required>
       </p>
       <p>
+      <input type="radio" id="tzinfo" value="my" v-model="dataentry.tzinfo">
+      <label for="my">My timezone</label>
+      <!-- <input type="radio" id="tzinfo" value="local" v-model="dataentry.tzinfo"> -->
+      <!-- <label for="local">Local timezone (observatory)</label> -->
+      <input type="radio" id="tzinfo" value="utc" v-model="dataentry.tzinfo">
+      <label for="utc">UTC</label>
+      </p>
+      <p>
         <b-button @click="submitForm">Find Targets</b-button>
       </p>
     </b-form>
@@ -66,6 +74,7 @@ export default {
         lon1: '',
         dateobs: '',
         timeobs: '',
+        tzinfo: '',
         offset: '',
       },
     };

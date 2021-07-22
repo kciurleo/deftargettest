@@ -55,6 +55,7 @@ def defsearch():
     lon1=post_data.get('lon1')
     dateobs=post_data.get('dateobs')
     timeobs=post_data.get('timeobs')
+    tzinfo=post_data.get('tzinfo')
     offset=post_data.get('offset')                              #user's UTC offset in min
     #'''
     if location1 == "0" and len(lat1)>0 and len(lon1)>0:        #use lat/long if not at PTR
@@ -64,9 +65,16 @@ def defsearch():
     else:
        locn=locations[location1]
 
-    start=Time(dateobs+'T'+timeobs)                             #in student's local time 
+    start=Time(dateobs+'T'+timeobs)
 
-    starttime=Time(start)-offset*u.min                          #start time in UTC
+    if tzinfo == "my":                                          #option for student's time or UTC
+        utcoffset=offset
+    #else if tzinfo = "local":
+        #utcoffset=?
+    else if tzinfo == "utc":
+        utcoffset=0
+
+    starttime=Time(start)-utcoffset*u.min                          #start time in UTC
     endtime=starttime+TimeDelta(1800.0, format='sec')           #end time if block is 30min
     #return(str(locn) +' \n' + str(start) +' \n' + str(starttime) +' \n' +str(endtime) +' \n' )
 
