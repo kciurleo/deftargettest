@@ -59,7 +59,9 @@ export default {
       const path = 'http://localhost:5000/ping';
       axios.post(path, this.dataentry)
         .then((response) => {
-          console.log(response);
+          console.log(response.data);
+          this.dataentry.targlist = response.data;
+          console.log(this.dataentry.targlist);
         })
         .catch((error) => {
           // eslint-disable-next-line
