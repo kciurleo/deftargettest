@@ -5,7 +5,6 @@
         <h2 class="is-size-4 has-text-weight-bold">{{ target.name }}</h2>
         <h3 class="target-type">{{ target.type }}</h3>
         <img :src="`/assets/DefaultTargetImages/${target.image}`"/>
-        <h4>{{ target.image }}</h4>
       </div>
     </div>
   </div>

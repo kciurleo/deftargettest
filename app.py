@@ -21,7 +21,7 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 basedir=os.getcwd()
 
 #Target list
-targs=pd.read_csv("src/assets/introtargets.csv")
+targs=pd.read_csv("public/assets/introtargets.csv")
 
 #Locations
 locations={
@@ -83,7 +83,7 @@ def defsearch():
      
     #Sort through for targets above minimum altitude
         if coordstart.alt-minalt.alt > zero.alt and coordend.alt-minalt.alt > zero.alt:
-            os.chdir(basedir+'/src/assets/DefaultTargetImages')
+            os.chdir(basedir+'/public/assets/DefaultTargetImages')
             image=glob.glob(target.replace(" ", "")+"_*")[0]
             diclist.append({"name": target, 'type': targs['Group'][i], 'image': image})
          

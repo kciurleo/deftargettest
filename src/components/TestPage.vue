@@ -6,7 +6,6 @@
     <div class="columns is-multiline">
       <div v-for="target in targlist" :target="target" :key="target.name"
       class="column is-one-quarter">
-        <p>"{{ target }}"</p>
         <TargetCard :target="target" />
       </div>
     </div>
