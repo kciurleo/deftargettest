@@ -38,8 +38,8 @@
       <p>
       <input name="tzinfo" type="radio" id="tzinfo" value="my" v-model="dataentry.tzinfo" required>
       <label for="my">My timezone</label>
-      <!-- <input type="radio" id="tzinfo" value="local" v-model="dataentry.tzinfo" required> -->
-      <!-- <label for="local">Local timezone (observatory)</label> -->
+      <!-- <input name="tzinfo" type="radio" id="tzinfo" value="lcl" v-model="dataentry.tzinfo"> -->
+      <!-- <label for="local">Local timezone</label> -->
       <input name="tzinfo" type="radio" id="tzinfo" value="utc" v-model="dataentry.tzinfo" required>
       <label for="utc">UTC</label>
       </p>
