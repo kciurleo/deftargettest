@@ -44,7 +44,7 @@
       <label for="utc">UTC</label>
       </p>
       <p>
-        <b-button @click="submitForm">Find Targets</b-button>
+        <b-button @click="submitForm" type="submit">Find Targets</b-button>
       </p>
     </b-form>
     <div class="columns">
