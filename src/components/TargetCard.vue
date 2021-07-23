@@ -2,10 +2,10 @@
   <div class="target-card">
     <div class="card">
       <img :src="`${target.image}`"/>
-      <div class="card-content">
-        <h2 class="is-size-4 has-text-weight-bold">{{ target.name }}</h2>
-        <h3 class="target-type">{{ target.type }}</h3>
+      <div class="target-name">
+        <h2>{{ target.name }}</h2>
       </div>
+        <h3 class="target-type">{{ target.type }}</h3>
     </div>
   </div>
 </template>
@@ -32,14 +32,21 @@ export default {
   }
   img {
     position: relative;
-    width:300px;
-    height:300px;
+    width:100%;
+    height:100%;
   }
-  .card-content {
+  .target-name {
     color: white;
     position: absolute;
-    top:20px;
-    left:20px;
+    top:5%;
+    left:5%;
+
+  }
+  .target-type {
+    color: white;
+    position: absolute;
+    top:80%;
+    left:5%;
 
   }
 </style>

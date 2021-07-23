@@ -22,16 +22,12 @@
       <p>
         <label for="lat1">Latitude:</label>
           <input type="text" id="lat1" v-model="dataentry.lat1">
-      </p>
-      <p>
         <label for="lon1">Longitude:</label>
           <input type="text" id="lon1" v-model="dataentry.lon1">
       </p>
       <p>
         <label for="dateobs">Date: </label>
             <input type="date" id="dateobs" v-model="dataentry.dateobs" required>
-      </p>
-      <p>
         <label for="timeobs">Time:</label>
             <input type="time" id="timeobs" v-model="dataentry.timeobs" required>
       </p>
@@ -44,7 +40,8 @@
       <label for="utc">UTC</label>
       </p>
       <p>
-        <b-button @click="submitForm" type="submit">Find Targets</b-button>
+        <b-button @click="submitForm" type="submit">Find Easy Targets</b-button>
+        <b-button @click="submitFormM" type="submit">Find Messier Objects</b-button>
       </p>
     </b-form>
     <div class="columns">
@@ -76,6 +73,7 @@ export default {
         timeobs: '',
         tzinfo: 'my',
         offset: '',
+        messier: '',
       },
     };
   },
@@ -88,6 +86,22 @@ export default {
     },
     submitForm() {
       this.dataentry.offset = new Date().getTimezoneOffset();
+      this.dataentry.messier = 'no';
+      const path = 'http://localhost:5000/ping';
+      axios.post(path, this.dataentry)
+        .then((response) => {
+          console.log(response.data);
+          this.targlist = response.data;
+          console.log(this.targlist);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+        });
+    },
+    submitFormM() {
+      this.dataentry.offset = new Date().getTimezoneOffset();
+      this.dataentry.messier = 'yes';
       const path = 'http://localhost:5000/ping';
       axios.post(path, this.dataentry)
         .then((response) => {
@@ -111,5 +125,4 @@ export default {
     display: flex;
     flex-wrap: wrap;
   }
-
 </style>

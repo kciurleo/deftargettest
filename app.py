@@ -21,7 +21,8 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 basedir=os.getcwd()
 
 #Target list
-targs=pd.read_csv("public/assets/introtargets.csv")
+defs=pd.read_csv("public/assets/introtargets.csv")
+mess=pd.read_csv("public/assets/messierobjects.csv")
 
 #Locations
 locations={
@@ -39,16 +40,6 @@ locations={
 # form entry and response
 @app.route('/ping', methods=['POST','GET'])
 def defsearch():
-    '''
-    location1='mrc'
-    lat1='0'
-    lon1='0'
-    
-    dateobs='2020-07-07'
-    timeobs='22:00:00'
-    timezone='-7:00'
-    offset=0
-    '''
     post_data = request.get_json()
     location1=post_data.get('location1')
     lat1=post_data.get('lat1')
@@ -57,7 +48,8 @@ def defsearch():
     timeobs=post_data.get('timeobs')
     tzinfo=post_data.get('tzinfo')
     offset=post_data.get('offset')                              #user's UTC offset in min
-    #'''
+    messier=post_data.get('messier')
+  
     if location1 == "0" and len(lat1)>0 and len(lon1)>0:        #use lat/long if not at PTR
         locn=EarthLocation.from_geodetic(lat=lat1, lon=lon1, height=390*u.m)
     else:
@@ -74,11 +66,17 @@ def defsearch():
 
     starttime=Time(start)+utcoffset*u.min                       #start time in UTC
     endtime=starttime+TimeDelta(1800.0, format='sec')           #end time if block is 30min
-    #return(str(locn) +' \n' + str(start) +' \n' + str(starttime) +' \n' +str(endtime) +' \n' )
 
-    #Start with default targets
+    #Find list of targets
     diclist=[]
     
+
+
+    if messier=='yes':
+        targs=mess
+    else:
+        targs=defs
+
     #Retrieve alt/az for each target at start and end of observing time
     for i in range(len(targs["Object Name"])):
         target=targs["Object Name"][i]
