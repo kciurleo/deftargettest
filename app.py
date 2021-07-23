@@ -60,8 +60,6 @@ def defsearch():
     #'''
     if location1 == "0" and len(lat1)>0 and len(lon1)>0:        #use lat/long if not at PTR
         locn=EarthLocation.from_geodetic(lat=lat1, lon=lon1, height=390*u.m)
-    elif location1 == "0":
-        return("Please input your location or latitude and longitude.")
     else:
        locn=locations[location1]
 
@@ -74,7 +72,7 @@ def defsearch():
 
     start=Time(dateobs+'T'+timeobs)                             #in student's local time 
 
-    starttime=Time(start)-utcoffset*u.min                          #start time in UTC
+    starttime=Time(start)+utcoffset*u.min                       #start time in UTC
     endtime=starttime+TimeDelta(1800.0, format='sec')           #end time if block is 30min
     #return(str(locn) +' \n' + str(start) +' \n' + str(starttime) +' \n' +str(endtime) +' \n' )
 
@@ -86,7 +84,7 @@ def defsearch():
         target=targs["Object Name"][i]
         coordstart = SkyCoord.from_name(target).transform_to(AltAz(obstime=starttime,location=locn))
         coordend = SkyCoord.from_name(target).transform_to(AltAz(obstime=endtime,location=locn))
-        minalt = SkyCoord(0*u.deg, 45*u.deg, frame='altaz')     #minimum altitude
+        minalt = SkyCoord(0*u.deg, 35*u.deg, frame='altaz')     #minimum altitude
         zero = SkyCoord(0*u.deg, 0*u.deg, frame='altaz')        #zero altitude
      
     #Sort through for targets above minimum altitude
