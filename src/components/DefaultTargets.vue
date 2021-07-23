@@ -6,25 +6,25 @@
     <b-form id="targform" @submit.prevent>
       <p>
         <label for="location1">Photon Ranch Location: </label>
-        <select id="location1" v-model="dataentry.location1" required>
-            <option lat="34" long="-120" value="mrc">Santa Barbara (MRC)</option>
-            <option lat="36" long="-106" value="saf">Santa Fe (SAF)</option>
-            <option lat="-31" long="149" value="coj">Sliding Spring</option>
-            <option lat="-32" long="20" value="cpt">South African Astronomical Observatory</option>
-            <option lat="28" long="-16" value="tfn">Teide Observatory</option>
-            <option lat="-30" long="-70" value="lsc">Cerro Tololo Interamerican Observatory</option>
-            <option lat="30" long="-104" value="elp">McDonald Observatory</option>
-            <option lat="20" long="-156" value="ogg">Haleakala Observatory</option>
-            <option lat="30" long="34" value="tlv">Wise Observatory</option>
-            <option lat="0" long="0" value="0">None</option>
+        <select id="location1" v-model="dataentry.location1" required @change="setLatLong">
+            <option lat="34" lon="-120" value="mrc">Santa Barbara (MRC)</option>
+            <option lat="36" lon="-106" value="saf">Santa Fe (SAF)</option>
+            <option lat="-31" lon="149" value="coj">Sliding Spring</option>
+            <option lat="-32" lon="20" value="cpt">South African Astronomical Observatory</option>
+            <option lat="28" lon="-16" value="tfn">Teide Observatory</option>
+            <option lat="-30" lon="-70" value="lsc">Cerro Tololo Interamerican Observatory</option>
+            <option lat="30" lon="-104" value="elp">McDonald Observatory</option>
+            <option lat="20" lon="-156" value="ogg">Haleakala Observatory</option>
+            <option lat="30" lon="34" value="tlv">Wise Observatory</option>
+            <option lat="" lon="" value="0">None</option>
         </select>
       </p>
       <p>
-        <label for="lat1">Latitude (optional):</label>
+        <label for="lat1">Latitude:</label>
           <input type="text" id="lat1" v-model="dataentry.lat1">
       </p>
       <p>
-        <label for="lon1">Longitude (optional):</label>
+        <label for="lon1">Longitude:</label>
           <input type="text" id="lon1" v-model="dataentry.lon1">
       </p>
       <p>
@@ -80,6 +80,12 @@ export default {
     };
   },
   methods: {
+    setLatLong() {
+      const ddl = document.getElementById('location1');
+      const selectedOption = ddl.options[ddl.selectedIndex];
+      this.dataentry.lat1 = selectedOption.getAttribute('lat');
+      this.dataentry.lon1 = selectedOption.getAttribute('lon');
+    },
     submitForm() {
       this.dataentry.offset = new Date().getTimezoneOffset();
       const path = 'http://localhost:5000/ping';
