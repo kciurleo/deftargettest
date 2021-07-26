@@ -7,8 +7,8 @@
       <p>
         <label for="location1">Photon Ranch Location: </label>
         <select id="location1" v-model="dataentry.location1" required @change="setLatLong">
-            <option lat="34" lon="-120" value="mrc">Santa Barbara (MRC)</option>
-            <option lat="36" lon="-106" value="saf">Santa Fe (SAF)</option>
+            <option lat="34" lon="-120" value="mrc">Mountain Ranch Camp Observatory</option>
+            <option lat="36" lon="-106" value="saf">Apache Ridge Observatory</option>
             <option lat="-31" lon="149" value="coj">Sliding Spring Observatory</option>
             <option lat="-32" lon="20" value="cpt">South African Astronomical Observatory</option>
             <option lat="28" lon="-16" value="tfn">Teide Observatory</option>
