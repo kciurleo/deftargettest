@@ -9,7 +9,7 @@
         <select id="location1" v-model="dataentry.location1" required @change="setLatLong">
             <option lat="34" lon="-120" value="mrc">Santa Barbara (MRC)</option>
             <option lat="36" lon="-106" value="saf">Santa Fe (SAF)</option>
-            <option lat="-31" lon="149" value="coj">Sliding Spring</option>
+            <option lat="-31" lon="149" value="coj">Sliding Spring Observatory</option>
             <option lat="-32" lon="20" value="cpt">South African Astronomical Observatory</option>
             <option lat="28" lon="-16" value="tfn">Teide Observatory</option>
             <option lat="-30" lon="-70" value="lsc">Cerro Tololo Interamerican Observatory</option>
@@ -31,14 +31,15 @@
         <label for="timeobs">Time:</label>
             <input type="time" id="timeobs" v-model="dataentry.timeobs" required>
       </p>
-      <p>
-      <input name="tzinfo" type="radio" id="tzinfo" value="my" v-model="dataentry.tzinfo" required>
-      <label for="my">My timezone</label>
-      <!-- <input name="tzinfo" type="radio" id="tzinfo" value="lcl" v-model="dataentry.tzinfo"> -->
-      <!-- <label for="local">Local timezone</label> -->
       <input name="tzinfo" type="radio" id="tzinfo" value="utc" v-model="dataentry.tzinfo" required>
       <label for="utc">UTC</label>
-      </p>
+      <br>
+      <input name="tzinfo" type="radio" id="tzinfo" value="my" v-model="dataentry.tzinfo" required>
+      <label for="my">My timezone</label>
+      <div v-if="dataentry.location1 !== '0'">
+        <input name="tzinfo" type="radio" id="tzinfo" value="lcl" v-model="dataentry.tzinfo">
+        <label for="local">Local timezone</label>
+      </div>
       <p>
         <b-button @click="submitForm" type="submit">Find Easy Targets</b-button>
         <b-button @click="submitFormM" type="submit">Find Messier Objects</b-button>
@@ -66,7 +67,7 @@ export default {
       target: {},
       targlist: '',
       dataentry: {
-        location1: '',
+        location1: '0',
         lat1: '',
         lon1: '',
         dateobs: '',

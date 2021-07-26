@@ -4,6 +4,8 @@ from astropy import units as u
 from astropy.coordinates import SkyCoord, EarthLocation, AltAz
 from astropy.time import Time, TimeDelta
 import pandas as pd
+import datetime
+import pytz
 import glob
 import os
 
@@ -34,7 +36,20 @@ locations={
     'lsc' : EarthLocation(lat=-30, lon=-70, height=2198*u.m),
     'elp' : EarthLocation(lat=30, lon=-104, height=2070*u.m),
     'ogg' : EarthLocation(lat=20, lon=-156, height=3055*u.m),
-    'tlv ': EarthLocation(lat=30, lon=34, height=875*u.m)
+    'tlv' : EarthLocation(lat=30, lon=34, height=875*u.m)
+}
+
+#Timezones
+tzs={
+    'mrc' : 'US/Pacific',
+    'saf' : 'US/Mountain',
+    'coj' : 'Australia/Sydney',
+    'cpt' : 'Africa/Johannesburg',
+    'tfn' : 'Atlantic/Canary',
+    'lsc' : 'America/Santiago',
+    'elp' : 'US/Central',
+    'ogg' : 'US/Hawaii',
+    'tlv' : 'Israel'
 }
 
 # form entry and response
@@ -55,10 +70,11 @@ def defsearch():
     else:
        locn=locations[location1]
 
-    if tzinfo == "my":                                          #option for student's time or UTC
+    #Set UTC offset based on time entry method
+    if tzinfo == "my":
         utcoffset=offset
-    #elif tzinfo = "local":
-        #utcoffset=?
+    elif tzinfo == "lcl":
+        utcoffset=datetime.datetime.now(pytz.timezone(tzs[location1])).utcoffset().total_seconds()/60
     elif tzinfo == "utc":
         utcoffset=0
 
@@ -69,8 +85,6 @@ def defsearch():
 
     #Find list of targets
     diclist=[]
-    
-
 
     if messier=='yes':
         targs=mess
